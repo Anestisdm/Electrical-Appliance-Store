@@ -146,7 +146,7 @@ public class StoreAppliances {
 												}
 											}
 											else {
-												System.out.println("��� �� ����������� � ���������� ��� ��������� �� ������ �� ��������� ����� �� ����� CODE, ITEM_TYPE ��� MODEL! ");
+												System.out.println("The CODE, ITEM_TYPE and MODEL fields must be filled in to complete the product registration! ");
 											}	
 									}
 									line = reader.readLine();
@@ -157,10 +157,10 @@ public class StoreAppliances {
 			}
 			}
 			catch (IOException e) {
-				System.out.println	("������ ���� ��� �������� ��� ������� "+ Products);
+				System.out.println	("Error reading file "+ Products);
 			}
 			catch (NullPointerException e) {
-				System.out.println("�� ������ "+Products+" ����� ����!");
+				System.out.println("The file "+Products+" is empty!");
 			}
 		}
 }

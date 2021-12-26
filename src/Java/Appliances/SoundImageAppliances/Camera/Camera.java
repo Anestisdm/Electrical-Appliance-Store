@@ -41,8 +41,8 @@ public String getName() {
 
 @Override
 public String toString() {
-	return "����������� ������"+super.toString()+"\nMegapixel=" + megapixel + "\n������ zoom=" + optical_zoom + "\n������� zoom=" + digital_zoom
-			+ "\n������� ������=" + screen_size;
+	return "Camera "+ super.toString () +" \nMegapixel = "+ megapixel +" \nOptical zoom = "+ optical_zoom +" \nDigital zoom = "+ digital_zoom
+			+ "\nScreen Size =" + screen_size;
 }
 
 

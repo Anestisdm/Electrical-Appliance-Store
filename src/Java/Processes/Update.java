@@ -61,7 +61,7 @@ DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy").withLo
 			writer.close();
 			}
 			catch (IOException e) {
-				System.out.println	("������ ���� ��� �������� ��� ������� "+ Products);
+				System.out.println	("Error reading file "+ Products);
 			}
 	}
 			
@@ -79,7 +79,7 @@ DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy").withLo
 			writer.close();
 		}
 		catch (IOException e) {
-			System.out.println	("������ ���� ��� �������� ��� ������� "+ Orders);
+			System.out.println	("Error reading file "+ Orders);
 		}
 	}
 		
@@ -97,7 +97,7 @@ DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy").withLo
 			writer.close();
 		}
 		catch (IOException e) {
-			System.out.println	("������ ���� ��� �������� ��� ������� "+ Sales);
+			System.out.println	("Error reading file "+ Sales);
 		}
 	}
 }

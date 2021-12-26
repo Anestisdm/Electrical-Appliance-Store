@@ -23,7 +23,7 @@ public String getType() {
 
 @Override
 public String toString() {
-	return super.toString()+"\n�����=" + type ;
+	return super.toString()+"\nType=" + type ;
 }
 
 }

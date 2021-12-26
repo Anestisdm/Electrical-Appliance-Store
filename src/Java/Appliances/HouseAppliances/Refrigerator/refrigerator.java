@@ -35,7 +35,7 @@ public String getFreezer_capacity() {
 
 @Override
 public String toString() {
-	return "������"+super.toString()+"\n�����=" + type + "\n������������ ����������=" + refrigerator_capacity + "\n������������ ���������="
+	return "Refrigerator "+ super.toString () +" \nType = "+ type +" \nRefrigerator Capacity = "+ refrigerator_capacity +" \nFreeze Capacity = "
 			+ freezer_capacity;
 }
 

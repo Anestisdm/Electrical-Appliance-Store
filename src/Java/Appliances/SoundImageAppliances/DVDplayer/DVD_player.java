@@ -29,7 +29,7 @@ public String getFormat_playback() {
 
 @Override
 public String toString() {
-	return "DVD Player"+super.toString()+"\n�������=" + resolution + "\nFormat ������������=" + format_playback;
+	return "DVD Player "+ super.toString () +" \nResolution = "+ resolution +" \nPlayback Format = "+ format_playback;
 }
 
 

@@ -47,8 +47,8 @@ public String getCapacity_of_HDD() {
 
 @Override
 public String toString() {
-	return super.toString()+"\n�����=" + type + "\n������������=" + processor + "\n�������=" + graphics + "\n����=" + sound
-			+ "\n������������ ������� ������=" + capacity_of_HDD ;
+	return super.toString()+"\nType = "+ type +" \nProcessor = "+ processor +" \nGraphics = "+ graphics +" \nSound = "+ sound
+			+ "\nHard Disk Capacity =" + capacity_of_HDD;
 }
 
 

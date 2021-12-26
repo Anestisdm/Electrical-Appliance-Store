@@ -23,7 +23,7 @@ public String getEnergy_class() {
 
 @Override
 public String toString() {
-	return super.toString()+"\n���������� �����=" + energy_class;
+	return super.toString()+"\nEnergy Class=" + energy_class;
 }
 
 

@@ -78,7 +78,7 @@ public class StoreSales {
 												}
 											}
 											if (x==false) {
-												System.out.println("�� ������ "+Model_Name+" ��� ����������� "+Manufacturer+" ��� ������ �� ��������� ���� �������� ��� ��������, ����� ��� ��������� ���� �������� ��� ���������! ");
+												System.out.println("The "+ Model_Name +" product of the manufacturer "+ Manufacturer +" can not be added to the list of sales, because it is not in the list of products! ");
 											}	
 										}
 										line = reader.readLine();
@@ -88,13 +88,13 @@ public class StoreSales {
 						}
 					}
 					catch (IOException e) {
-						System.out.println	("������ ���� ��� �������� ��� ������� "+ Sales);
+						System.out.println	("Error reading file "+ Sales);
 					}
 					catch (DateTimeParseException ex) {
 						System.out.println ("Wrong date format!");
 					}
 					catch (NullPointerException e) {
-						System.out.println("�� ������ "+Sales+" ����� ����!");
+						System.out.println("The file "+Sales+" is empty!");
 					}
 				}
 }

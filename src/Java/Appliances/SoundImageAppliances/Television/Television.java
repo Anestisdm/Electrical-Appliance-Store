@@ -32,7 +32,7 @@ public String getPorts() {
 }
 @Override
 public String toString() {
-	return "���������"+super.toString()+"\n�������� ������=" + screen_size + "\n�������=" + resolution + "\n�����=" + ports;
+	return "TV "+ super.toString () +" \nScreen Dimension = "+ screen_size +" \nResolution = "+ resolution +" \nPorts = "+ ports;
 }
 
 

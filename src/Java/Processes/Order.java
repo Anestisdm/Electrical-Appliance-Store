@@ -94,15 +94,15 @@ public String getOrder_status() {
 
 @Override
 public String toString() {
-	return "�������� ����������� \n������� ����������=" + order_code + "\n������� ��������=" + model + "\n������������� ������=" + customer_name
-			+ "\n�������� ������=" + customer_phone + "\n���������� ����������=" + order_date + "\n���������� ������ ����������=" + arrival_date
-			+ "\n������=" + order_cost+"�" +"\n�������� �����������="+order_pieces+"\n��������� �����������=" + order_status ;
+	return "Order Details \nOrder Code =" + order_code + "\nDevice Model =" + model + "\nCustomerName =" + customer_name
+			+ "\nCustomer Phone =" + customer_phone + "\nOrder Date =" + order_date + "\nOrder Arrival Date =" + arrival_date
+			+ "\nCost =" + order_cost + "€" + "\nOrder Parts =" + order_pieces + "\nOrder Status =" + order_status;
 }
 
 public static void Overview_Orders() {
 	Scanner scanner= new Scanner(System.in);
 	System.out.println("-----------------------------------------------------------");
-	System.out.print("�������� �������� ��� ������ �����������: (������� 0 ��� �����) ");
+	System.out.print("Please enter the order code: (press 0 to exit) ");
 	int input=scanner.nextInt();
 	boolean x=false;
 	for(int i=0;i<=Orders.size();i++) {
@@ -119,36 +119,36 @@ public static void Overview_Orders() {
 				if(Orders.get(i).order_status.equals("EXPECTED")) {
 				do {
 					System.out.println("-----------------------------------------------------------");
-					System.out.print("������� 1 ��� ����� ����������� & ������: (������� 0 ��� �����) ");
+					System.out.print("Press 1 to place an order & sell: (press 0 to exit) ");
 					int input1=scanner.nextInt();
 					if (input1==1) {
 						y=true;
 							Orders.get(i).order_status="EXECUTED";
 							Sale s= new Sale(Orders.get(i).model,Orders.get(i).customer_name,Orders.get(i).order_date, Orders.get(i).customer_phone,Orders.get(i).order_cost,Orders.get(i).order_pieces);
 							System.out.println("-----------------------------------------------------------");
-							System.out.println("� ��������� ��� ����������� �����������!");
-							System.out.println("O ������� ������� �����: "+s.getSale_code());
+							System.out.println("The status of the order has been updated!");
+							System.out.println("The sales code is: "+s.getSale_code());
 						}
 					else if (input1==0) {
 						break;
 					}
 					else {
 						System.out.println("-----------------------------------------------------------");
-						System.out.println("����� ��������!");
+						System.out.println("Wrong input!");
 					}
 				}
 				while(y==false);
 				}
 				else {
 					System.out.println("-----------------------------------------------------------");
-					System.out.println("� ���������� ���� ����������!");
+					System.out.println("The order has been executed!");
 				}
 			}
 		}
 	}
 	if (x==false) {
 		System.out.println("-----------------------------------------------------------");
-		System.out.println("� ������� ����������� ��� �������� ��� ����� �������������!");
+		System.out.println("The order code you entered is not registered!");
 	}
 }
 

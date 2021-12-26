@@ -28,7 +28,7 @@ public String getSpins() {
 
 @Override
 public String toString() {
-	return "���������"+super.toString()+"\n������������=" + capacity + "\n�������=" + spins;
+	return "Washing machine "+ super.toString () +" \nCapacity = "+ capacity +" \nSpins = "+ spins;
 }
 
 

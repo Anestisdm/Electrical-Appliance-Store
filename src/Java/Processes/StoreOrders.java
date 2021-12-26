@@ -85,7 +85,7 @@ public void LoadFile (String Orders) {
 											}
 										}
 										if (x==false) {
-											System.out.println("�� ������ "+Model_Name+" ��� ����������� "+Manufacturer+" ��� ������ �� ��������� ���� �������� ��� �����������, ����� ��� ��������� ���� �������� ��� ���������! ");
+											System.out.println("The "+ Model_Name +" product of the manufacturer "+ Manufacturer +" can not be added to the list of orders, because it is not in the list of products! ");
 										}	
 									}
 									line = reader.readLine();
@@ -95,13 +95,13 @@ public void LoadFile (String Orders) {
 					}
 				}
 				catch (IOException e) {
-					System.out.println	("������ ���� ��� �������� ��� ������� "+ Orders);
+					System.out.println	("Error reading file "+ Orders);
 				}
 				catch (DateTimeParseException ex) {
 					System.out.println ("Wrong date format!");
 				}
 				catch (NullPointerException e) {
-					System.out.println("�� ������ "+Orders+" ����� ����!");
+					System.out.println("The file "+Orders+" is empty!");
 				}
 			}
 

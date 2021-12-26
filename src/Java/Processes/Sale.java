@@ -78,14 +78,14 @@ public int getSale_pieces() {
 
 @Override
 public String toString() {
-	return "�������� �������\n������� �������=" + sale_code + "\n�������=" + model + "\n������������� ������=" + customer_name
-			+ "\n�������� ������=" + customer_phone + "\n���������� �������=" + sale_date + "\n������=" + sale_cost+"�"+"\n�������� �������="+sale_pieces;
+	return "Sale Details \nSale Code = "+ sale_code +" \nDevice = "+ model +" \nCustomer Name = "+ customer_name
+			+ "\nClient Phone =" + customer_phone + "\nDate of Sale =" + sale_date + "\nCost =" + sale_cost + "€" + "\nSales Pieces =" + sale_pieces;
 }
 
 public static void Overview_Sales() {
 	Scanner scanner= new Scanner(System.in);
 	System.out.println("-----------------------------------------------------------");
-	System.out.print("�������� �������� ��� ������ �������: (������� 0 ��� �����) ");
+	System.out.print("Please enter the sales code: (press 0 to exit) ");
 	int input=scanner.nextInt();
 	boolean x=false;
 	for(int i=0;i<=Sales.size();i++) {
@@ -103,7 +103,7 @@ public static void Overview_Sales() {
 	}
 	if (x==false) {
 		System.out.println("-----------------------------------------------------------");
-		System.out.println("� ������� ������� ��� �������� ��� ����� �������������!");
+		System.out.println("The sales code you entered is not registered!");
 	}
 }
 

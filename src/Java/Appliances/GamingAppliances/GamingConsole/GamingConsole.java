@@ -18,7 +18,7 @@ private static final String name="Console";
 
 	@Override
 	public String toString() {
-		return "�������"+super.toString();
+		return "Console"+super.toString();
 	}
 
 

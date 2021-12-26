@@ -74,8 +74,8 @@ public static HashMap<Integer, Appliance> getAppliances() {
 
 @Override
 public String toString() {
-	return "\n������� ���������=" + code + "\n����� ��������=" + model_name +"\n������ ����=" + price+"�"+"\n�������="+Math.round(getDiscount()*100)+"%"+"\n������ ����="+getDiscountPrice()+"�"+"\n�������="+stock+" ��������"+ "\n���� ��������=" + model_year + "\n�������������="
-			+ manufacturer ;
+	return "\nProduct Code = "+ code +" \nModel Name = "+ model_name +" \nOriginal Price = "+ price +" € "+" \nDiscount = "+ Math.round (getDiscount () * 100) +"% "+ "\nFinal Price =" + getDiscountPrice () + "€" + "\nStock =" + stock + "items" + "\nModel Year =" + model_year + "\nManufacturer ="
+			+ manufacturer;
 }
 
 public static void Print_Appliances(String Device) {
@@ -93,7 +93,7 @@ public static void Print_Appliances(String Device) {
 		}
 	}
 	System.out.println("-----------------------------------------------------------");
-	System.out.print("���� ������� (������): ");
+	System.out.print("Enter number: ");
 	int input=scanner.nextInt();
 	System.out.println("-----------------------------------------------------------");
 	System.out.println(Selected_Appliances.get(input));
@@ -101,23 +101,23 @@ public static void Print_Appliances(String Device) {
 	if (Selected_Appliances.get(input).stock>0) {
 		boolean x=false;
 		do {
-		System.out.println("�� ������������ ������� ���� ������� ��� ��������� ���. ������ �� ���������������� �����; (1:��� � 2:���)");
-		System.out.print("���� ������� (������): ");
+		System.out.println("This model has stock in our store. Do you want to make a purchase? (1: Yes or 2: No)");
+		System.out.print("Enter number: ");
 			int input2=scanner.nextInt();
 			if (input2==1) {
-				System.out.print("�������� �������� ������ ��������� ���� ������ �� ���������: (������� 0 ��� �����) ");
+				System.out.print("Please enter the number of pieces you want to buy: (press 0 to exit) ");
 				int pieces=scanner.nextInt();
 				if (pieces==0) {
 					break;
 				}
 				if (pieces<=Selected_Appliances.get(input).stock) {
 					Scanner in = new Scanner(System.in);
-					System.out.print("�������� �������� �� ������������� ���: [(�� ������� ������������) � ������� 0 ��� �����] ");
+					System.out.print("Please enter your name: [(eg Vassilis Papadopoulos) or press 0 to exit] ");
 					String name=in.nextLine();
 					if (name.equals("0")) {
 						break;
 					}
-					System.out.print("�������� �������� �� �������� ���: [(�� 6947452542) � ������� 0 ��� �����] ");
+					System.out.print("Please enter your phone number: [(eg 6947452542) or press 0 to exit] ");
 					String tel=in.nextLine();
 					if (tel.equals("0")) {
 						break;
@@ -125,13 +125,13 @@ public static void Print_Appliances(String Device) {
 					double sale_cost=(Selected_Appliances.get(input).getDiscountPrice())*pieces;
 					Sale s1= new Sale(Selected_Appliances.get(input),name, LocalDate.now(), tel,sale_cost,pieces);
 					Selected_Appliances.get(input).stock-=pieces;
-					System.out.println("� ����� ������������ ��������!");
+					System.out.println("Purchase completed successfully!");
 					System.out.println("-----------------------------------------------------------");
 					System.out.println(s1);
 					x=true;
 				}
 				else {
-					System.out.println("��� ������� ������ ������� ��� ��������� ��� ��� �� ������������ ��� ����� ���!");
+					System.out.println("There is not enough stock in our store to satisfy your purchase!");
 					break;
 				}
 			}
@@ -139,7 +139,7 @@ public static void Print_Appliances(String Device) {
 				x=true;
 			}
 			else {
-				System.out.println("����� ��������!");
+				System.out.println("Wrong input!");
 			}
 			}
 			while (x==false);
@@ -148,34 +148,34 @@ public static void Print_Appliances(String Device) {
 		try {
 			boolean x=false;
 			do {
-				System.out.println("��� ������� ������� ��� �� ������������ ������� ��� ��������� ���. ������ �� ���������������� ����������; (1:��� � 2:���)");
-				System.out.print("���� ������� (������): ");
+				System.out.println("There is no stock for this model in our store. Do you want to place an order? (1: Yes or 2: No)");
+				System.out.print("Enter number: ");
 				int input2=scanner.nextInt();
 				if (input2==1) {
 					Scanner in = new Scanner(System.in);
-					System.out.print("�������� �������� ������ ��������� ���� ������ �� ������������: (������� 0 ��� �����)");
+					System.out.print("Please enter the number of pieces where you want to order: (press 0 to exit)");
 					int pieces=scanner.nextInt();
 					if (pieces==0) {
 						break;
 					}
-					System.out.print("�������� �������� �� ������������� ���: [(�� ������� ������������) � ������� 0 ��� �����] ");
+					System.out.print("Please enter your name: [(eg Vassilis Papadopoulos) or press 0 to exit] ");
 					String name=in.nextLine();
 					if (name.equals("0")) {
 						break;
 					}
-					System.out.print("�������� �������� �� �������� ���: [(�� 6947452542) � ������� 0 ��� �����] ");
+					System.out.print("Please enter your phone number: [(eg 6947452542) or press 0 to exit] ");
 					String tel=in.nextLine();
 					if (tel.equals("0")) {
 						break;
 					}
-					System.out.print("�������� �������� ����������� ���������� ������: [(�� 2020-05-11) � ������� 0 ��� �����] ");
+					System.out.print("Please enter the expected arrival date: [(eg 2020-05-11) or press 0 to exit] ");
 					LocalDate arrival_date=LocalDate.parse(in.nextLine(),formatter);
 					if (arrival_date.equals("0")) {
 						break;
 					}
 					double order_cost=(Selected_Appliances.get(input).getDiscountPrice())*pieces;
 					Order o1=new Order(Selected_Appliances.get(input),name,tel, LocalDate.now(), arrival_date, order_cost ,pieces,"EXPECTED");
-					System.out.println("� ���������� ������������ ��������!");
+					System.out.println("The order was completed successfully!");
 					System.out.println("-----------------------------------------------------------");
 					System.out.println(o1);
 					x=true;
@@ -184,7 +184,7 @@ public static void Print_Appliances(String Device) {
 					x=true;
 				}
 				else {
-					System.out.println("����� ��������!");
+					System.out.println("Wrong input!");
 				}
 			}
 			while (x==false);
@@ -204,12 +204,12 @@ public static void Overview_Appliances() {
 	boolean x=false;
 	do {
 	System.out.println("-----------------------------------------------------------");
-	System.out.println("0.���������");
-	System.out.println("1.���� ��� ������");
-	System.out.println("2.Gaming");
-	System.out.println("3.�������� ��������");
+	System.out.println ("0.Return");
+	System.out.println ("1.Sound and Video");
+	System.out.println ("2.Gaming");
+	System.out.println ("3.Home Appliances");
 	System.out.println("-----------------------------------------------------------");
-	System.out.print("���� ������� (������): ");
+	System.out.print("Enter number: ");
 	int input=scanner.nextInt();
 		switch (input) {
 		case 0 :
@@ -220,9 +220,9 @@ public static void Overview_Appliances() {
 			boolean y=false;
 			do {
 				System.out.println("-----------------------------------------------------------");
-				System.out.println("0.���������\n1.�����������\n2.Blue ray/DVD players\n3.������������ �������");
+				System.out.println("0.Return \n1.TVs \n2.Blue ray / DVD players \n3.Cameras");
 				System.out.println("-----------------------------------------------------------");
-				System.out.print("���� ������� (������): ");
+				System.out.print("Enter number: ");
 				int input2=scanner.nextInt();
 				switch (input2) {
 				case 0:
@@ -243,7 +243,7 @@ public static void Overview_Appliances() {
 					break;
 				default:
 					System.out.println("-----------------------------------------------------------");
-					System.out.println("����� ��������");
+					System.out.println("Wrong input!");
 				}
 			}
 			while(y==false);
@@ -253,9 +253,9 @@ public static void Overview_Appliances() {
 			y=false;
 			do {
 				System.out.println("-----------------------------------------------------------");
-				System.out.println("0.���������\n1.��������/������� ��������");
+				System.out.println("0.Return \n1.Consoles / portable consoles");
 				System.out.println("-----------------------------------------------------------");
-				System.out.print("���� ������� (������): ");
+				System.out.print("Enter number: ");
 				int input2=scanner.nextInt();
 				switch (input2) {
 				case 0:
@@ -268,7 +268,7 @@ public static void Overview_Appliances() {
 					break;
 				default:
 					System.out.println("-----------------------------------------------------------");
-					System.out.println("����� ��������");
+					System.out.println("Wrong input!");
 				}
 			}
 			while(y==false);
@@ -278,9 +278,9 @@ public static void Overview_Appliances() {
 			y=false;
 			do {
 				System.out.println("-----------------------------------------------------------");
-				System.out.println("0.���������\n1.������\n2.��������� ������");
+				System.out.println("0.Return \n1.Refrigerators \n2.Washing machines");
 				System.out.println("-----------------------------------------------------------");
-				System.out.print("���� ������� (������): ");
+				System.out.print("Enter number: ");
 				int input2=scanner.nextInt();
 				switch (input2) {
 				case 0:
@@ -297,14 +297,14 @@ public static void Overview_Appliances() {
 					break;
 				default:
 					System.out.println("-----------------------------------------------------------");
-					System.out.println("����� ��������");
+					System.out.println("Wrong input!");
 				}
 			}
 			while(y==false);
 		break;
 		default:
 			System.out.println("-----------------------------------------------------------");
-			System.out.println("����� ��������");
+			System.out.println("Wrong input!");
 		}
 	}
 	while(x==false);
