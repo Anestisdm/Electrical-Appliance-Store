@@ -3,6 +3,8 @@ package Appliances;
 import Processes.Order;
 import Processes.Sale;
 
+import javax.swing.*;
+import java.awt.*;
 import java.util.HashMap;
 import java.util.Locale;
 import java.lang.*;
@@ -20,6 +22,8 @@ public abstract class Appliance {
     private final String manufacturer;
     private double price;
     private int stock;
+    static ImageIcon icon = new ImageIcon("src/images/shop.png");
+    static Image image = icon.getImage().getScaledInstance(40,40,0);
 
     private static HashMap<Integer, Appliance> Appliances = new HashMap<Integer, Appliance>();
     private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -81,73 +85,60 @@ public abstract class Appliance {
                 + manufacturer;
     }
 
-    public static boolean Print_Appliances(String Device) {
+    public static boolean Print_Appliances(String Device, String Title) {
         boolean y = false;
         boolean r = false;
         Scanner scanner = new Scanner(System.in);
-        int input = 0;
-        HashMap<Integer, Appliance> Selected_Appliances = new HashMap<Integer, Appliance>();
+        HashMap<String, Appliance> Selected_Appliances = new HashMap<String, Appliance>();
         while (y == false) {
             int c = 0;
+            String Output = "";
+
             for (int i = 0; i <= Appliances.size(); i++) {
                 if (Appliances.get(i) != null) {
                     if (Appliances.get(i).getName().equalsIgnoreCase(Device)) {
                         c++;
-                        Selected_Appliances.put(c, Appliances.get(i));
-                        System.out.println("-----------------------------------------------------------");
-                        System.out.println(c + "." + Appliances.get(i).getModel_name());
+                        Selected_Appliances.put(String.valueOf(c), Appliances.get(i));
+                        Output += c + ". "+Appliances.get(i).getModel_name()+ "\n";
                     }
                 }
             }
-            System.out.println("-----------------------------------------------------------");
-            System.out.print("Enter number: ");
-            input = scanner.nextInt();
-            if (input == 0) {
+            String input = JOptionPane.showInputDialog(null, Output + "Enter number: ",Title, JOptionPane.QUESTION_MESSAGE);
+            if (input == null) {
                 break;
-            } else if (Selected_Appliances.get(input) != null) {
-                System.out.println("-----------------------------------------------------------");
-                System.out.println(Selected_Appliances.get(input));
-                System.out.println("-----------------------------------------------------------");
+            }
+            else if  (Selected_Appliances.get(input) != null) {
                 if (Selected_Appliances.get(input).stock > 0) {
                     boolean x = false;
                     do {
-                        System.out.println("This model has stock in our store. Do you want to make a purchase? (1: Yes or 2: No)");
-                        System.out.print("Enter number: ");
-                        int input2 = scanner.nextInt();
-                        if (input2 == 1) {
-                            System.out.print("Please enter the number of pieces you want to buy: (press 0 to exit) ");
-                            int pieces = scanner.nextInt();
-                            if (pieces == 0) {
-                                break;
-                            }
-                            if (pieces <= Selected_Appliances.get(input).stock) {
-                                Scanner in = new Scanner(System.in);
-                                System.out.print("Please enter your name: [(eg Vassilis Papadopoulos) or press 0 to exit] ");
-                                String name = in.nextLine();
-                                if (name.equals("0")) {
+                        int input2 = JOptionPane.showConfirmDialog(null, Selected_Appliances.get(input).toString() + "\n\nThis model has stock in our store. Do you want to make a purchase? ","Purchase", JOptionPane.INFORMATION_MESSAGE);
+                        if (input2 == 0) {
+                            JTextField pieces = new JTextField();
+                            JTextField name = new JTextField();
+                            JTextField tel = new JTextField();
+                            Object[] message = {
+                                    "Pieces:", pieces,
+                                    "Name:", name,
+                                    "Telephone:", tel
+                            };
+                            int option = JOptionPane.showConfirmDialog(null, message, "Purchase", JOptionPane.OK_CANCEL_OPTION);
+                            if (option == JOptionPane.OK_OPTION) {
+                                if (Integer.parseInt(pieces.getText()) <= Selected_Appliances.get(input).stock ) {
+                                    double sale_cost = (Selected_Appliances.get(input).getDiscountPrice()) * Integer.parseInt(pieces.getText());
+                                    Sale s1 = new Sale(Selected_Appliances.get(input), name.getText(), LocalDate.now(), tel.getText(), sale_cost, Integer.parseInt(pieces.getText()));
+                                    Selected_Appliances.get(input).stock -= Integer.parseInt(pieces.getText());
+                                    JOptionPane.showMessageDialog(null,"Purchase completed successfully!\n\n"+s1.toString());
+                                    x = true;
+                                    r = x;
+                                } else {
+                                    JOptionPane.showMessageDialog(null,"There is not enough stock in our store to satisfy your purchase!","Error",JOptionPane.WARNING_MESSAGE);
                                     break;
                                 }
-                                System.out.print("Please enter your phone number: [(eg 6947452542) or press 0 to exit] ");
-                                String tel = in.nextLine();
-                                if (tel.equals("0")) {
-                                    break;
-                                }
-                                double sale_cost = (Selected_Appliances.get(input).getDiscountPrice()) * pieces;
-                                Sale s1 = new Sale(Selected_Appliances.get(input), name, LocalDate.now(), tel, sale_cost, pieces);
-                                Selected_Appliances.get(input).stock -= pieces;
-                                System.out.println("Purchase completed successfully!");
-                                System.out.println("-----------------------------------------------------------");
-                                System.out.println(s1);
-                                x = true;
-                                r = x;
-                            } else {
-                                System.out.println("There is not enough stock in our store to satisfy your purchase!");
-                                break;
                             }
-                        } else if (input2 == 2) {
+                        } else if (input2 == 1) {
                             x = true;
                         } else {
-                            System.out.println("Wrong input!");
+                            break;
                         }
                     }
                     while (x == false);
@@ -155,10 +146,8 @@ public abstract class Appliance {
                     try {
                         boolean x = false;
                         do {
-                            System.out.println("There is no stock for this model in our store. Do you want to place an order? (1: Yes or 2: No)");
-                            System.out.print("Enter number: ");
-                            int input2 = scanner.nextInt();
-                            if (input2 == 1) {
+                            int input2 = JOptionPane.showConfirmDialog(null, Selected_Appliances.get(input).toString() + "\n\nThere is no stock for this model in our store. Do you want to place an order? ","Order", JOptionPane.INFORMATION_MESSAGE);
+                            if (input2 == 0) {
                                 Scanner in = new Scanner(System.in);
                                 System.out.print("Please enter the number of pieces where you want to order: (press 0 to exit)");
                                 int pieces = scanner.nextInt();
@@ -187,10 +176,10 @@ public abstract class Appliance {
                                 System.out.println(o1);
                                 x = true;
                                 r = x;
-                            } else if (input2 == 2) {
+                            } else if (input2 == 1) {
                                 x = true;
                             } else {
-                                System.out.println("Wrong input!");
+                                break;
                             }
                         }
                         while (x == false);
@@ -200,8 +189,7 @@ public abstract class Appliance {
                 }
                 break;
             } else {
-                System.out.println("Wrong input! Try again");
-                System.out.println("-----------------------------------------------------------");
+                JOptionPane.showMessageDialog(null,"Wrong input! Try again","Error",JOptionPane.WARNING_MESSAGE);
             }
         }
         return r;
@@ -209,105 +197,77 @@ public abstract class Appliance {
 
 
     public static void Overview_Appliances() {
-        Scanner scanner = new Scanner(System.in);
         boolean x = false;
-        do {
-            System.out.println("-----------------------------------------------------------");
-            System.out.println("0.Return");
-            System.out.println("1.Sound and Video");
-            System.out.println("2.Gaming");
-            System.out.println("3.Home Appliances");
-            System.out.println("-----------------------------------------------------------");
-            System.out.print("Enter number: ");
-            int input = scanner.nextInt();
-            switch (input) {
-                case 0:
-                    x = true;
-                    break;
-                case 1:
-                    x = true;
-                    boolean y = false;
-                    do {
-                        System.out.println("-----------------------------------------------------------");
-                        System.out.println("0.Return \n1.TVs \n2.Blue ray / DVD players \n3.Cameras");
-                        System.out.println("-----------------------------------------------------------");
-                        System.out.print("Enter number: ");
-                        int input2 = scanner.nextInt();
-                        switch (input2) {
-                            case 0:
-                                x = false;
-                                y = true;
-                                break;
-                            case 1:
-                                y = Print_Appliances("tv");
-                                break;
-                            case 2:
-                                y = Print_Appliances("DVD player");
-                                break;
-                            case 3:
-                                y = Print_Appliances("Camera");
-                                break;
-                            default:
-                                System.out.println("-----------------------------------------------------------");
-                                System.out.println("Wrong input!");
-                        }
+        boolean y =false;
+        do {String[] options = {"Sound & Video Devices", "Gaming Devices", "Home Appliances"};
+            String input = (String) JOptionPane.showInputDialog(null, "Select category:",
+                    "Appliances", JOptionPane.QUESTION_MESSAGE,new ImageIcon(image), options,null);
+            if (input==null) {
+                break;
+            }
+            else if (input == "Sound & Video Devices") {
+                x = true;
+                y = false;
+                do {
+                    String[] options2 = {"Televisions", "Blue ray / DVD players", "Cameras"};
+                    String input2 = (String) JOptionPane.showInputDialog(null, "Select category:",
+                            "Sound & Video Devices", JOptionPane.QUESTION_MESSAGE,new ImageIcon(image), options2,null);
+
+                    if (input2 == null) {
+                        x = false;
+                        y = true;
+                        break;
                     }
-                    while (y == false);
-                    break;
-                case 2:
-                    x = true;
-                    y = false;
-                    do {
-                        System.out.println("-----------------------------------------------------------");
-                        System.out.println("0.Return \n1.Consoles / portable consoles");
-                        System.out.println("-----------------------------------------------------------");
-                        System.out.print("Enter number: ");
-                        int input2 = scanner.nextInt();
-                        switch (input2) {
-                            case 0:
-                                x = false;
-                                y = true;
-                                break;
-                            case 1:
-                                y = Print_Appliances("Console");
-                                break;
-                            default:
-                                System.out.println("-----------------------------------------------------------");
-                                System.out.println("Wrong input!");
-                        }
+                    else if (input2 == "Televisions") {
+                        y = Print_Appliances("tv", "Televisions");
                     }
-                    while (y == false);
-                    break;
-                case 3:
-                    x = true;
-                    y = false;
-                    do {
-                        System.out.println("-----------------------------------------------------------");
-                        System.out.println("0.Return \n1.Refrigerators \n2.Washing machines");
-                        System.out.println("-----------------------------------------------------------");
-                        System.out.print("Enter number: ");
-                        int input2 = scanner.nextInt();
-                        switch (input2) {
-                            case 0:
-                                x = false;
-                                y = true;
-                                break;
-                            case 1:
-                                y = Print_Appliances("refrigerator");
-                                break;
-                            case 2:
-                                y = Print_Appliances("Washing Machine");
-                                break;
-                            default:
-                                System.out.println("-----------------------------------------------------------");
-                                System.out.println("Wrong input!");
-                        }
+                    else if (input2 == "Blue ray / DVD players") {
+                        y = Print_Appliances("DVD player", "Blue ray / DVD players");
                     }
-                    while (y == false);
-                    break;
-                default:
-                    System.out.println("-----------------------------------------------------------");
-                    System.out.println("Wrong input!");
+                    else if (input2 == "Cameras") {
+                        y = Print_Appliances("Camera", "Cameras");
+                    }
+                }
+                while (y == false);
+            }
+                else if (input == "Gaming Devices") {
+                x = true;
+                y = false;
+                do {
+                    String[] options2 = {"Consoles / portable consoles"};
+                    String input2 = (String) JOptionPane.showInputDialog(null, "Select category:",
+                            "Gaming Devices", JOptionPane.QUESTION_MESSAGE,new ImageIcon(image), options2,null);
+                    if (input2 == null) {
+                        x = false;
+                        y = true;
+                        break;
+                    }
+                    else if (input2 == "Consoles / portable consoles") {
+                        y = Print_Appliances("Console", "Consoles / portable consoles");
+                    }
+                }
+                while (y == false);
+            }
+            else if (input == "Home Appliances") {
+                x = true;
+                y = false;
+                do {
+                    String[] options2 = {"Refrigerators", "Washing Machines"};
+                    String input2 = (String) JOptionPane.showInputDialog(null, "Select category:",
+                            "Home Appliances", JOptionPane.QUESTION_MESSAGE,new ImageIcon(image), options2,null);
+                    if (input2 == null) {
+                        x = false;
+                        y = true;
+                        break;
+                    }
+                    else if (input2 == "Refrigerators") {
+                        y = Print_Appliances("refrigerator", "Refrigerators");
+                    }
+                    else if (input2 == "Washing Machines") {
+                        y = Print_Appliances("Washing Machine", "Washing Machines");
+                    }
+                }
+                while (y == false);
             }
         }
         while (x == false);
