@@ -17,7 +17,7 @@ public class mainApp {
 				int x=1;
 				while (x!=0) {	
 					System.out.println("-----------------------------------------------------------");
-					System.out.println("0.Stop application");
+					System.out.println("0.Stop Application");
 					System.out.println("1.Overview of all available appliances");
 					System.out.println("2.Overview of all orders");
 					System.out.println("3.Overview of all sales");
