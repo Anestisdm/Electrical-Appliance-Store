@@ -11,7 +11,10 @@ Application for a Nursery School
 ### 1 - Scope
 This an academic project that was implemented with Java programming an Information System for Electrical Appliance Store. The store needed an information system that would retain its products along with their features and the store's current stock. Sellers will also have the opportunity to make purchases and orders in off-stock products. Finally, through the system, it will be possible to find sales and orders, but also to execute orders that are ready for delivery.
 
-### 2 - Features
+### 2 - Implementation
+![SystemDataFlow](https://user-images.githubusercontent.com/72802400/147838107-bf448668-1ddb-4afe-b7b6-c1a01353ac96.png)
+
+### 3 - Features
 * Find all the available devices and appliances in the store
 * Find specific features of devices and appliances
 * Find the stock of the store in each device or appliance
@@ -22,7 +25,7 @@ This an academic project that was implemented with Java programming an Informati
 * Find sales details placed from the system
 
 
-### 3 - How it works
+### 4 - How it works
 
 **Workstation Specifications**
 - Windows 10 or Linux or MacOS, 64 bit
@@ -34,13 +37,14 @@ This an academic project that was implemented with Java programming an Informati
 1. Clone this repository to Intellij
 2. Run the MainApp from Intellij
 3. Start using the application and all the features from the main menu
- 
+
+   ![MainMenu](https://user-images.githubusercontent.com/72802400/147837623-50b90259-8962-42fa-9f09-dc3190284fb3.png)
 
 
-### 4 - Future Improvements
+### 5 - Future Improvements
 - Optimize User Interface to be more user friendly
 - Connect the app with a database to store securely all the data 
 
-### 5 - User Support
+### 6 - User Support
 For help or new feature suggestions you can contanct with the development team.
 
