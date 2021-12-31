@@ -35,8 +35,9 @@ This an academic project that was implemented with Java programming an Informati
 
 **Steps to run the application**
 1. Clone this repository to Intellij
-2. Run the MainApp from Intellij
-3. Start using the application and all the features from the main menu
+2. Add devices and appliances to text files along with their features and stock by following the template
+3. Run the MainApp from Intellij
+4. Start using the application and all the features from the main menu
 
    ![MainMenu](https://user-images.githubusercontent.com/72802400/147837623-50b90259-8962-42fa-9f09-dc3190284fb3.png)
 
