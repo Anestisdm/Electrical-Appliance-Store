@@ -38,6 +38,12 @@ public class mainApp {
 				case 2:
 					Sale.Overview_Sales();
 					break;
+				case -1:
+					int a = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?","Exit",JOptionPane.WARNING_MESSAGE);
+					 if (a == JOptionPane.CLOSED_OPTION || a == JOptionPane.CANCEL_OPTION) {
+						 x=3;
+						continue;
+					}
 				default:
 					System.out.println("I get in");
 					ch.UpdateProducts("src/Text-Files/Products.txt");

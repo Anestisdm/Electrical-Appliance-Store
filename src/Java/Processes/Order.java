@@ -2,6 +2,8 @@ package Processes;
 
 import Appliances.Appliance;
 
+import javax.swing.*;
+import java.awt.*;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.time.LocalDate;
@@ -20,6 +22,8 @@ private double order_cost;
 private int order_pieces;
 private String order_status;
 private static HashMap<Integer, Order> Orders = new HashMap<Integer, Order>();
+static ImageIcon icon = new ImageIcon("src/images/orders.png");
+static Image image = icon.getImage().getScaledInstance(40,40,0);
 
 public Order(Appliance model,int order_code, String customer_name, String customer_phone,LocalDate order_date, LocalDate arrival_date,
 		double order_cost,int order_pieces, String order_status) {
@@ -100,55 +104,47 @@ public String toString() {
 }
 
 public static void Overview_Orders() {
-	Scanner scanner= new Scanner(System.in);
-	System.out.println("-----------------------------------------------------------");
-	System.out.print("Please enter the order code: (press 0 to exit) ");
-	int input=scanner.nextInt();
-	boolean x=false;
-	for(int i=0;i<=Orders.size();i++) {
-		if (input==0) {
-			x=true;
-			break;
-		}
-		if (Orders.get(i)!=null) {
-			if(Orders.get(i).order_code==(input)) {
-				x=true;
-				System.out.println("-----------------------------------------------------------");
-				System.out.println(Orders.get(i));
-				boolean y=false;
-				if(Orders.get(i).order_status.equals("EXPECTED")) {
-				do {
-					System.out.println("-----------------------------------------------------------");
-					System.out.print("Press 1 to place an order & sell: (press 0 to exit) ");
-					int input1=scanner.nextInt();
-					if (input1==1) {
-						y=true;
-							Orders.get(i).order_status="EXECUTED";
-							Sale s= new Sale(Orders.get(i).model,Orders.get(i).customer_name,Orders.get(i).order_date, Orders.get(i).customer_phone,Orders.get(i).order_cost,Orders.get(i).order_pieces);
-							System.out.println("-----------------------------------------------------------");
-							System.out.println("The status of the order has been updated!");
-							System.out.println("The sales code is: "+s.getSale_code());
+	String input = (String) JOptionPane.showInputDialog(null, "Please enter the order code:",
+			"Orders",JOptionPane.QUESTION_MESSAGE,new ImageIcon(image),null,null);
+	if (input!=null) {
+		try {
+			boolean x = false;
+			for (int i = 0; i <= Orders.size(); i++) {
+				if (Orders.get(i) != null) {
+					if (Orders.get(i).order_code == (Integer.parseInt(input))) {
+						x = true;
+						boolean y = false;
+						if (Orders.get(i).order_status.equals("EXPECTED")) {
+							do {
+								int input1 = JOptionPane.showConfirmDialog(null, Orders.get(i).toString() + "\n\nDo you want to place order & sell:",
+										"Order", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, new ImageIcon(image));
+								if (input1 == 0) {
+									y = true;
+									Orders.get(i).order_status = "EXECUTED";
+									Sale s = new Sale(Orders.get(i).model, Orders.get(i).customer_name, Orders.get(i).order_date, Orders.get(i).customer_phone, Orders.get(i).order_cost, Orders.get(i).order_pieces);
+									JOptionPane.showMessageDialog(null, "The status of the order has been updated!\nThe sales code is: " + s.getSale_code());
+								} else if (input1 == 1) {
+									break;
+								} else {
+									JOptionPane.showMessageDialog(null, "Wrong input!", "Error", JOptionPane.WARNING_MESSAGE);
+
+								}
+							}
+							while (y == false);
+						} else {
+							JOptionPane.showMessageDialog(null, Orders.get(i).toString() + "\n\nThe order has been executed!","Order", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(image));
+
 						}
-					else if (input1==0) {
-						break;
 					}
-					else {
-						System.out.println("-----------------------------------------------------------");
-						System.out.println("Wrong input!");
-					}
-				}
-				while(y==false);
-				}
-				else {
-					System.out.println("-----------------------------------------------------------");
-					System.out.println("The order has been executed!");
 				}
 			}
+			if (x == false) {
+				JOptionPane.showMessageDialog(null, "The order code you entered is not registered!", "Error", JOptionPane.WARNING_MESSAGE);
+
+			}
+		} catch (NumberFormatException ex) {
+			JOptionPane.showMessageDialog(null, "Wrong number format! Try again!", "Error", JOptionPane.WARNING_MESSAGE);
 		}
-	}
-	if (x==false) {
-		System.out.println("-----------------------------------------------------------");
-		System.out.println("The order code you entered is not registered!");
 	}
 }
 

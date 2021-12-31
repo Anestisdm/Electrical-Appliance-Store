@@ -8,6 +8,7 @@ import Appliances.SoundImageAppliances.Camera.Camera;
 import Appliances.SoundImageAppliances.DVDplayer.DVD_player;
 import Appliances.SoundImageAppliances.Television.Television;
 
+import javax.swing.*;
 import java.io.*;
 import java.util.*;
 
@@ -146,7 +147,7 @@ public class StoreAppliances {
 												}
 											}
 											else {
-												System.out.println("The CODE, ITEM_TYPE and MODEL fields must be filled in to complete the product registration! ");
+												JOptionPane.showMessageDialog(null, "The CODE, ITEM_TYPE and MODEL fields must be filled in to complete the product registration! ", "Error", JOptionPane.ERROR_MESSAGE);
 											}	
 									}
 									line = reader.readLine();
@@ -157,10 +158,10 @@ public class StoreAppliances {
 			}
 			}
 			catch (IOException e) {
-				System.out.println	("Error reading file "+ Products);
+				JOptionPane.showMessageDialog(null, "Error reading file "+ Products, "Error", JOptionPane.ERROR_MESSAGE);
 			}
 			catch (NullPointerException e) {
-				System.out.println("The file "+Products+" is empty!");
+				JOptionPane.showMessageDialog(null, "The file "+Products+" is empty!", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 }

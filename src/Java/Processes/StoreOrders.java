@@ -3,6 +3,7 @@ package Processes;
 import Appliances.Appliance;
 import Processes.Order;
 
+import javax.swing.*;
 import java.io.*;
 import java.util.*;
 import java.time.LocalDate;
@@ -85,7 +86,7 @@ public void LoadFile (String Orders) {
 											}
 										}
 										if (x==false) {
-											System.out.println("The "+ Model_Name +" product of the manufacturer "+ Manufacturer +" can not be added to the list of orders, because it is not in the list of products! ");
+											JOptionPane.showMessageDialog(null, "The "+ Model_Name +" product of the manufacturer "+ Manufacturer +" can not be added to the list of orders, because it is not in the list of products! ", "Error", JOptionPane.ERROR_MESSAGE);
 										}	
 									}
 									line = reader.readLine();
@@ -95,13 +96,13 @@ public void LoadFile (String Orders) {
 					}
 				}
 				catch (IOException e) {
-					System.out.println	("Error reading file "+ Orders);
+					JOptionPane.showMessageDialog(null, "Error reading file "+ Orders, "Error", JOptionPane.ERROR_MESSAGE);
 				}
 				catch (DateTimeParseException ex) {
-					System.out.println ("Wrong date format!");
+					JOptionPane.showMessageDialog(null, "Wrong date format!", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 				catch (NullPointerException e) {
-					System.out.println("The file "+Orders+" is empty!");
+					JOptionPane.showMessageDialog(null, "The file "+Orders+" is empty!", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 

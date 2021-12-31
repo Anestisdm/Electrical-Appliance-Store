@@ -2,9 +2,13 @@ package Processes;
 
 import Appliances.Appliance;
 
+import javax.swing.*;
+import java.awt.*;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.time.LocalDate;
+
+
 public class Sale {
 
 private static int count=0;
@@ -16,6 +20,8 @@ private LocalDate sale_date;
 private double sale_cost;
 private int sale_pieces;
 private static HashMap<Integer,Sale> Sales = new HashMap<Integer,Sale>();
+static ImageIcon icon = new ImageIcon("src/images/sales.png");
+static Image image = icon.getImage().getScaledInstance(40,40,0);
 
 
 public Sale(Appliance model,int sale_code, String customer_name, LocalDate sale_date, String customer_phone,double sale_cost,int sale_pieces) {
@@ -83,27 +89,26 @@ public String toString() {
 }
 
 public static void Overview_Sales() {
-	Scanner scanner= new Scanner(System.in);
-	System.out.println("-----------------------------------------------------------");
-	System.out.print("Please enter the sales code: (press 0 to exit) ");
-	int input=scanner.nextInt();
-	boolean x=false;
-	for(int i=0;i<=Sales.size();i++) {
-		if (input==0) {
-			x=true;
-			break;
-		}
-		if(Sales.get(i)!=null) {
-			if(Sales.get(i).sale_code==input) {
-				x=true;
-				System.out.println("-----------------------------------------------------------");
-				System.out.println(Sales.get(i));
+	String input = (String) JOptionPane.showInputDialog(null, "Please enter the sales code:",
+			"Sales",JOptionPane.QUESTION_MESSAGE,new ImageIcon(image),null,null);
+	if (input!=null) {
+		try {
+			boolean x = false;
+			for (int i = 0; i <= Sales.size(); i++) {
+				if (Sales.get(i) != null) {
+					if (Sales.get(i).sale_code == Integer.parseInt(input)) {
+						x = true;
+						JOptionPane.showMessageDialog(null, Sales.get(i), "Sale", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(image));
+					}
+				}
 			}
+			if (x == false) {
+				JOptionPane.showMessageDialog(null, "The sales code you entered is not registered!", "Error", JOptionPane.WARNING_MESSAGE);
+
+			}
+		} catch (NumberFormatException ex) {
+			JOptionPane.showMessageDialog(null, "Wrong number format! Try again!", "Error", JOptionPane.WARNING_MESSAGE);
 		}
-	}
-	if (x==false) {
-		System.out.println("-----------------------------------------------------------");
-		System.out.println("The sales code you entered is not registered!");
 	}
 }
 

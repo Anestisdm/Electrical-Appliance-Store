@@ -9,6 +9,7 @@ import Appliances.SoundImageAppliances.DVDplayer.DVD_player;
 import Appliances.SoundImageAppliances.Television.Television;
 
 
+import javax.swing.*;
 import java.io.*;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -61,7 +62,7 @@ DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy").withLo
 			writer.close();
 			}
 			catch (IOException e) {
-				System.out.println	("Error reading file "+ Products);
+				JOptionPane.showMessageDialog(null, "Error reading file "+ Products, "Error", JOptionPane.ERROR_MESSAGE);
 			}
 	}
 			
@@ -79,7 +80,7 @@ DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy").withLo
 			writer.close();
 		}
 		catch (IOException e) {
-			System.out.println	("Error reading file "+ Orders);
+			JOptionPane.showMessageDialog(null, "Error reading file "+ Orders, "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 		
@@ -97,7 +98,7 @@ DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy").withLo
 			writer.close();
 		}
 		catch (IOException e) {
-			System.out.println	("Error reading file "+ Sales);
+			JOptionPane.showMessageDialog(null, "Error reading file "+ Sales, "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }
