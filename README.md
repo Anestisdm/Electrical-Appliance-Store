@@ -44,6 +44,7 @@ This an academic project that was implemented with Java programming an Informati
 ### 5 - Future Improvements
 - Optimize User Interface to be more user friendly
 - Connect the app with a database to store securely all the data 
+- Add an Authentication Method to protect sensitive data
 
 ### 6 - User Support
 For help or new feature suggestions you can contanct with the development team.
