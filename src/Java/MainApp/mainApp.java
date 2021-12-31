@@ -42,8 +42,7 @@ public class mainApp {
 					int a = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?","Exit",JOptionPane.WARNING_MESSAGE);
 					 if (a == JOptionPane.CLOSED_OPTION || a == JOptionPane.CANCEL_OPTION) {
 						 x=3;
-						continue;
-					}
+						continue;}
 				default:
 					ch.UpdateProducts("src/Text-Files/Products.txt");
 					ch.UpdateOrders("src/Text-Files/Orders.txt");
