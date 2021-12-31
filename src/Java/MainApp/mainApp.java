@@ -45,7 +45,6 @@ public class mainApp {
 						continue;
 					}
 				default:
-					System.out.println("I get in");
 					ch.UpdateProducts("src/Text-Files/Products.txt");
 					ch.UpdateOrders("src/Text-Files/Orders.txt");
 					ch.UpdateSales("src/Text-Files/Sales.txt");
