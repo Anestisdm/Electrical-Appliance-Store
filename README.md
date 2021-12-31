@@ -6,7 +6,7 @@
 ---
 
 # Electrical Appliance Store
-Application for a Nursery School 
+Information System for an Electrical Appliance Store
 
 ### 1 - Scope
 This an academic project that was implemented with Java programming an Information System for Electrical Appliance Store. The store needed an information system that would retain its products along with their features and the store's current stock. Sellers will also have the opportunity to make purchases and orders in off-stock products. Finally, through the system, it will be possible to find sales and orders, but also to execute orders that are ready for delivery.
