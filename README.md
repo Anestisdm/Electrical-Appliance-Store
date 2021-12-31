@@ -9,7 +9,7 @@
 Information System for an Electrical Appliance Store
 
 ### 1 - Scope
-This an academic project that was implemented with Java programming an Information System for Electrical Appliance Store. The store needed an information system that would retain its products along with their features and the store's current stock. Sellers will also have the opportunity to make purchases and orders in off-stock products. Finally, through the system, it will be possible to find sales and orders, but also to execute orders that are ready for delivery.
+This an academic project that was implemented with Java programming an Information System for Electrical Appliance Store. The store needed an information system that would store its products along with their features and the store's current stock. Sellers will also have the opportunity to make purchases and orders in out off stock products. Finally, through the system, it will be possible to find sales and orders, but also to execute orders that are ready for delivery.
 
 ### 2 - Implementation
 ![SystemDataFlow](https://user-images.githubusercontent.com/72802400/147838107-bf448668-1ddb-4afe-b7b6-c1a01353ac96.png)
