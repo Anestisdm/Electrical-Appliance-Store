@@ -49,4 +49,3 @@ This an academic project that was implemented with Java programming an Informati
 
 ### 6 - User Support
 For help or new feature suggestions you can contanct with the development team.
-
